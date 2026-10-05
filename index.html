@@ -74,9 +74,38 @@
 <div class="cap"><i class="dot dev"></i><div><h3>Cuerpo físico</h3><p>La integración física de percepción, expresión, audio, energía y movimiento comienza en esta etapa.</p></div></div>
 <div class="cap"><i class="dot dev"></i><div><h3>Movimiento</h3><p>El desplazamiento autónomo pertenece a una etapa posterior. El primer cuerpo funcional será prioritariamente una GABI sentada.</p></div></div>
 </div></div></section>
-<section class="section" id="contacto"><div class="section-inner"><div class="eyebrow">Participa</div><h2>Conversemos sobre GABI.</h2><p class="lead">Este proyecto sigue creciendo. Si tienes una idea, una pregunta o simplemente quieres contarnos qué te parece GABI, este será el espacio para hacerlo.</p><div class="contact-wrap"><div class="counter-panel"><h3>Visitas</h3><p>Personas que han pasado por este rincón de GABI.</p><div class="visit-number" id="visitCount">—</div><div class="visit-label">visitas a la página</div><div class="counter-note" id="counterNote">Cargando contador…</div></div><div class="contact-panel"><h3>Déjanos un comentario</h3><form class="contact-form" id="gabiContact" action="https://formsubmit.co/frankestein.robot.ia@gmail.com" method="POST"><input type="hidden" name="_subject" value="Nuevo comentario desde la web de G.A.B.I."><input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://gabi082726.github.io/GABI/"><input type="text" name="_honey" style="display:none"><label>Nombre<input type="text" name="name" placeholder="Tu nombre" required></label><label>Correo <span style="font-weight:400;color:#718da1">(opcional)</span><input type="email" name="email" placeholder="tu@correo.cl"></label><label>Comentario<textarea name="message" placeholder="¿Qué te parece GABI?" required></textarea></label><button type="submit">ENVIAR COMENTARIO</button><div class="form-note">Tu comentario será enviado al correo oficial del proyecto G.A.B.I.</div></form></div></div></div></section>
+<section class="section" id="contacto"><div class="section-inner"><div class="eyebrow">Participa</div><h2>Conversemos sobre GABI.</h2><p class="lead">Este proyecto sigue creciendo. Si tienes una idea, una pregunta o simplemente quieres contarnos qué te parece GABI, este será el espacio para hacerlo.</p><div class="contact-wrap"><div class="counter-panel"><h3>Visitas</h3><p>Personas que han pasado por este rincón de GABI.</p><div class="visit-number" id="visitCount">—</div><div class="visit-label">visitas a la página</div><div class="counter-note" id="counterNote">Cargando contador…</div></div><div class="contact-panel"><h3>Déjanos un comentario</h3><form class="contact-form" id="gabiContact" action="https://formsubmit.co/ajax/frankestein.robot.ia@gmail.com" method="POST"><input type="hidden" name="_subject" value="Nuevo comentario desde la web de G.A.B.I."><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" style="display:none"><label>Nombre<input type="text" name="name" placeholder="Tu nombre" required></label><label>Correo <span style="font-weight:400;color:#718da1">(opcional)</span><input type="email" name="email" placeholder="tu@correo.cl"></label><label>Comentario<textarea name="message" placeholder="¿Qué te parece GABI?" required></textarea></label><button type="submit">ENVIAR COMENTARIO</button><div class="form-note">Tu comentario será enviado al correo oficial del proyecto G.A.B.I.</div></form></div></div></div></section>
 <script>
 (function(){const el=document.getElementById('visitCount'),note=document.getElementById('counterNote');const key='gabi-web-oficial';fetch('https://countapi.mileshilliard.com/api/v1/hit/'+encodeURIComponent(key)).then(r=>{if(!r.ok)throw new Error('counter');return r.json()}).then(d=>{const v=d.value??d.count??d;el.textContent=Number(v).toLocaleString('es-CL');note.textContent='Contador público de visitas.'}).catch(()=>{el.textContent='—';note.textContent='Contador temporalmente no disponible.'})})();
 </script>
-<footer class="footer">G.A.B.I. · GESTOR ARTIFICIAL BÁSICO INTELIGENTE · CHILE · 2026</footer>\n</body></html>
+<footer class="footer">G.A.B.I. · GESTOR ARTIFICIAL BÁSICO INTELIGENTE · CHILE · 2026</footer>\n
+<script>
+(function () {
+  const form = document.querySelector('form[action*="formsubmit.co"]');
+  if (!form) return;
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const button = form.querySelector('button[type="submit"], input[type="submit"]');
+    if (button) button.disabled = true;
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!response.ok) throw new Error('No se pudo enviar el comentario');
+
+      // Envío confirmado: volver SIEMPRE a la página pública de GABI.
+      window.location.replace('https://gabi082726.github.io/GABI/');
+    } catch (error) {
+      alert('No se pudo enviar el comentario. Inténtalo nuevamente.');
+      if (button) button.disabled = false;
+    }
+  });
+})();
+</script>
+</body></html>
