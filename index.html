@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- GABI WEB OFICIAL V14 · VERSIÓN PÚBLICA · 29/10/2026 -->
+<!-- GABI WEB OFICIAL V15 · VERSIÓN PÚBLICA · 29/10/2026 -->
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>G.A.B.I. — Gestor Artificial Básico Inteligente</title>
 <style>
@@ -79,7 +79,7 @@
 <div class="cap"><i class="dot dev"></i><div><h3>Cuerpo físico</h3><p>Se prepara el montaje de la electrónica en cabeza y torso, tras pruebas separadas de cámara, ojos, boca y servos. La integración y coordinación del conjunto siguen en desarrollo.</p></div></div>
 <div class="cap"><i class="dot dev"></i><div><h3>Movimiento</h3><p>El desplazamiento autónomo pertenece a una etapa posterior. El primer cuerpo funcional será prioritariamente una GABI sentada.</p></div></div>
 </div></div></section>
-<section class="section" id="contacto"><div class="section-inner"><div class="eyebrow">Participa</div><h2>Conversemos sobre GABI.</h2><p class="lead">Este proyecto sigue creciendo. Si tienes una idea, una pregunta o simplemente quieres contarnos qué te parece GABI, este será el espacio para hacerlo.</p><div class="contact-wrap"><div class="counter-panel"><h3>Visitas</h3><p>Veces que se ha visitado este rincón de GABI.</p><div class="visit-number" id="visitCount">—</div><div class="visit-label">visitas a la página</div><div class="counter-note" id="counterNote">Cargando contador…</div></div><div class="contact-panel"><h3>Déjanos un comentario</h3><form class="contact-form" id="gabiContact" action="https://formsubmit.co/ajax/frankestein.robot.ia@gmail.com" method="POST"><input type="hidden" name="_subject" value="Nuevo comentario desde la web de G.A.B.I."><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_url" value="https://gabi082726.github.io/G.A.B.I./"><input type="text" name="_honey" style="display:none"><label>Nombre<input type="text" name="name" placeholder="Tu nombre" required></label><label>Correo <span style="font-weight:400;color:#718da1">(opcional)</span><input type="email" name="email" placeholder="tu@correo.cl"></label><label>Comentario<textarea name="message" placeholder="¿Qué te parece GABI?" required></textarea></label><button type="submit">ENVIAR COMENTARIO</button><p class="form-note">Tu comentario será enviado al correo oficial del proyecto G.A.B.I.</p><p id="contactStatus" class="contact-status" role="status" aria-live="polite" tabindex="-1"></p><div class="contact-backup"><span>También puedes usar tu aplicación de correo:</span> <a id="contactEmail" href="mailto:frankestein.robot.ia@gmail.com?subject=Comentario%20sobre%20G.A.B.I.">ENVIAR POR CORREO</a><p class="form-note">Se abrirá un borrador con tu comentario. Revisa y envíalo desde tu correo.</p></div></form></div></div></div></section>
+<section class="section" id="contacto"><div class="section-inner"><div class="eyebrow">Participa</div><h2>Conversemos sobre GABI.</h2><p class="lead">Este proyecto sigue creciendo. Si tienes una idea, una pregunta o simplemente quieres contarnos qué te parece GABI, este será el espacio para hacerlo.</p><div class="contact-wrap"><div class="counter-panel"><h3>Visitas</h3><p>Veces que se ha visitado este rincón de GABI.</p><div class="visit-number" id="visitCount">—</div><div class="visit-label">visitas a la página</div><div class="counter-note" id="counterNote">Cargando contador…</div></div><div class="contact-panel"><h3>Déjanos un comentario</h3><form class="contact-form" id="gabiContact" action="https://api.web3forms.com/submit" method="POST"><input type="hidden" name="access_key" value="ddfcd536-9aa8-4c86-a074-d3d26114212c"><input type="hidden" name="subject" value="Nuevo comentario desde la web de G.A.B.I."><input type="hidden" name="from_name" value="Web de G.A.B.I."><input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none"><label>Nombre<input type="text" name="name" placeholder="Tu nombre" required></label><label>Correo <span style="font-weight:400;color:#718da1">(opcional)</span><input type="email" name="email" placeholder="tu@correo.cl"></label><label>Comentario<textarea name="message" placeholder="¿Qué te parece GABI?" required></textarea></label><button type="submit">ENVIAR COMENTARIO</button><p class="form-note">Tu comentario será enviado al correo oficial del proyecto G.A.B.I.</p><p id="contactStatus" class="contact-status" role="status" aria-live="polite" tabindex="-1"></p></form></div></div></div></section>
 <script>
 (function(){const el=document.getElementById('visitCount'),note=document.getElementById('counterNote');const key='gabi-web-oficial';fetch('https://countapi.mileshilliard.com/api/v1/hit/'+encodeURIComponent(key)).then(r=>{if(!r.ok)throw new Error('counter');return r.json()}).then(d=>{const v=d.value??d.count??d;el.textContent=Number(v).toLocaleString('es-CL');note.textContent='Contador público de visitas.'}).catch(()=>{el.textContent='—';note.textContent='Contador temporalmente no disponible.'})})();
 </script>
@@ -90,46 +90,48 @@
   const form = document.getElementById('gabiContact');
   if (!form) return;
   const status = document.getElementById('contactStatus');
-  const emailLink = document.getElementById('contactEmail');
   const button = form.querySelector('button[type="submit"]');
   let sending = false;
-  function updateEmail() {
-    const name = form.elements.namedItem('name').value.trim();
-    const email = form.elements.namedItem('email').value.trim();
-    const message = form.elements.namedItem('message').value.trim();
-    const body = [name ? 'Nombre: ' + name : '', email ? 'Correo de respuesta: ' + email : '', '', message].filter((line, index) => line || index === 2).join('\n');
-    emailLink.href = 'mailto:frankestein.robot.ia@gmail.com?subject=' + encodeURIComponent('Comentario sobre G.A.B.I.') + '&body=' + encodeURIComponent(body);
-  }
-  form.addEventListener('input', updateEmail);
-  emailLink.addEventListener('click', updateEmail);
-  updateEmail();
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
     if (sending || !form.reportValidity()) return;
+    const key = form.elements.namedItem('access_key').value.trim();
+    if (!key || key === 'PENDIENTE_CLAVE_WEB3FORMS') {
+      status.textContent = 'El formulario está pendiente de activación. Tu comentario se conserva.';
+      status.dataset.state = 'error';
+      return;
+    }
+    if (form.elements.namedItem('botcheck').checked) return;
     sending = true;
     button.disabled = true;
     button.textContent = 'ENVIANDO…';
-    status.textContent = 'Esperando confirmación del servicio de envío…';
+    status.textContent = 'Enviando tu comentario…';
     status.dataset.state = 'pending';
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 20000);
     try {
-      const data = new FormData(form);
-      if (!String(data.get('email') || '').trim()) data.delete('email');
+      const payload = Object.fromEntries(new FormData(form).entries());
+      if (!String(payload.email || '').trim()) delete payload.email;
+      delete payload.botcheck;
       const response = await fetch(form.action, {
-        method: 'POST', body: data, headers: { 'Accept': 'application/json' },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
         signal: controller.signal
       });
       const result = await response.json().catch(() => null);
-      if (!response.ok || !result || !(result.success === true || result.success === 'true')) {
-        throw new Error('No hay confirmación del servicio');
+      if (!response.ok || !result || result.success !== true) {
+        const failure = new Error('Envío no confirmado');
+        failure.httpStatus = response.status;
+        throw failure;
       }
-      status.textContent = 'El servicio confirmó la recepción de tu comentario. Gracias por escribirnos.';
+      status.textContent = 'Tu comentario se envió correctamente al correo de GABI. Gracias por escribirnos.';
       status.dataset.state = 'success';
     } catch (error) {
-      status.textContent = 'El servicio no confirmó el envío. Tu comentario sigue aquí: puedes usar ENVIAR POR CORREO para enviarlo desde tu aplicación de correo.';
+      status.textContent = error.httpStatus === 429
+        ? 'Se alcanzó el límite temporal de envíos. Tu comentario se conserva; inténtalo más tarde.'
+        : 'No pudimos confirmar el envío. Tu comentario se conserva. Revisa tu conexión y vuelve a intentarlo más tarde.';
       status.dataset.state = 'error';
-      updateEmail();
     } finally {
       clearTimeout(timeout);
       sending = false;
@@ -145,5 +147,5 @@
 .section,.footer{background-image:radial-gradient(circle at 50% 0,rgba(24,85,135,.12),transparent 38%),url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22220%22%20height%3D%22820%22%20viewBox%3D%220%200%20220%20820%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2352c5ff%22%20stroke-width%3D%221.4%22%20opacity%3D%22.26%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M0%2042H38L66%2070V142L98%20174H150%22%2F%3E%3Cpath%20d%3D%22M0%2094H22L46%20118V228L78%20260H124V310%22%2F%3E%3Cpath%20d%3D%22M0%20188H16L34%20206V344L66%20376H174%22%2F%3E%3Cpath%20d%3D%22M0%20292H12L26%20306V450L62%20486H106V546%22%2F%3E%3Cpath%20d%3D%22M0%20428H26L46%20448V586L78%20618H164%22%2F%3E%3Cpath%20d%3D%22M0%20568H16L32%20584V692L64%20724H134%22%2F%3E%3Cpath%20d%3D%22M0%20754H38L66%20782H160%22%2F%3E%3Cpath%20d%3D%22M0%208H82L112%2038V98H174%22%2F%3E%3Ccircle%20cx%3D%22150%22%20cy%3D%22174%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22124%22%20cy%3D%22310%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22174%22%20cy%3D%22376%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22106%22%20cy%3D%22546%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22164%22%20cy%3D%22618%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22134%22%20cy%3D%22724%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22160%22%20cy%3D%22782%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22174%22%20cy%3D%2298%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"),url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22220%22%20height%3D%22820%22%20viewBox%3D%220%200%20220%20820%22%3E%3Cg%20transform%3D%22translate(220%200)%20scale(-1%201)%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2352c5ff%22%20stroke-width%3D%221.4%22%20opacity%3D%22.26%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M0%2042H38L66%2070V142L98%20174H150%22%2F%3E%3Cpath%20d%3D%22M0%2094H22L46%20118V228L78%20260H124V310%22%2F%3E%3Cpath%20d%3D%22M0%20188H16L34%20206V344L66%20376H174%22%2F%3E%3Cpath%20d%3D%22M0%20292H12L26%20306V450L62%20486H106V546%22%2F%3E%3Cpath%20d%3D%22M0%20428H26L46%20448V586L78%20618H164%22%2F%3E%3Cpath%20d%3D%22M0%20568H16L32%20584V692L64%20724H134%22%2F%3E%3Cpath%20d%3D%22M0%20754H38L66%20782H160%22%2F%3E%3Cpath%20d%3D%22M0%208H82L112%2038V98H174%22%2F%3E%3Ccircle%20cx%3D%22150%22%20cy%3D%22174%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22124%22%20cy%3D%22310%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22174%22%20cy%3D%22376%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22106%22%20cy%3D%22546%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22164%22%20cy%3D%22618%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22134%22%20cy%3D%22724%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22160%22%20cy%3D%22782%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3Ccircle%20cx%3D%22174%22%20cy%3D%2298%22%20r%3D%223.2%22%20fill%3D%22%23020913%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");background-position:center top,left top,right top;background-size:auto,clamp(180px,24vw,320px) 820px,clamp(180px,24vw,320px) 820px;background-repeat:no-repeat,repeat-y,repeat-y}
 @media(max-width:800px){.section,.footer{background-size:auto,180px 820px,180px 820px}}
 </style>
-<style id="gabi-contact-feedback">.contact-status{margin:0;line-height:1.6;color:#d5e8f4;overflow-wrap:anywhere}.contact-status:empty{display:none}.contact-status[data-state="error"]{color:#ffd69a}.contact-status[data-state="success"]{color:#80e6b6}.contact-backup{padding-top:18px;border-top:1px solid rgba(98,201,255,.2);color:#9fb6c8;font-size:.88rem;line-height:1.65}.contact-backup a{display:inline-block;margin-top:8px;padding:10px 15px;border:1px solid rgba(98,201,255,.4);border-radius:999px;color:#9edfff;text-decoration:none;font-weight:700}.contact-backup a:hover{background:rgba(31,132,195,.15)}.contact-backup .form-note{margin-bottom:0}</style>
+<style id="gabi-contact-feedback">.contact-status{margin:0;line-height:1.6;color:#d5e8f4;overflow-wrap:anywhere}.contact-status:empty{display:none}.contact-status[data-state="error"]{color:#ffd69a}.contact-status[data-state="success"]{color:#80e6b6}</style>
 </body></html>
